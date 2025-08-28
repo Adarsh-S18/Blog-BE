@@ -8,19 +8,21 @@ const EXPOSE_HEADERS = "Content-Length, Content-Type";
 
 export function middleware(req: NextRequest) {
   const origin = req.headers.get("origin") || "";
-  const list = (process.env.ALLOWED_ORIGINS || "")
+  const allowedList = (process.env.ALLOWED_ORIGINS || "")
     .split(",")
     .map((o) => o.trim())
     .filter(Boolean);
   let allowOrigin = "*";
-  if (list.length) {
-    if (origin && list.includes(origin)) allowOrigin = origin;
-    else allowOrigin = list[0];
+  if (allowedList.length) {
+    if (origin && allowedList.includes(origin)) {
+      allowOrigin = origin;
+    } else {
+      allowOrigin = allowedList[0]; 
+    }
   } else if (origin) {
     allowOrigin = origin;
   }
   if (allowOrigin === "*" && req.headers.get("authorization")) {
-    // Cannot use * with credentials; fall back to origin
     allowOrigin = origin || "";
   }
   const headers = new Headers({
@@ -32,7 +34,7 @@ export function middleware(req: NextRequest) {
     Vary: "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
   });
   if (req.method === "OPTIONS") {
-    return new NextResponse(null, { status: 204, headers });
+    return new NextResponse(null, { status: 200, headers });
   }
   const res = NextResponse.next();
   headers.forEach((v, k) => res.headers.set(k, v));
