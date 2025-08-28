@@ -8,7 +8,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: process.env.ALLOWED_ORIGIN || "http://localhost:3000",
+            value: process.env.ALLOWED_ORIGINS || "http://localhost:3000",
           },
           {
             key: "Access-Control-Allow-Methods",
