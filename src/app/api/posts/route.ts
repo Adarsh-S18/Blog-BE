@@ -3,6 +3,7 @@ import { dbConnect } from "@/lib/db";
 import { Post } from "@/models/Post";
 import { User } from "@/models/User";
 import { getUserFromRequest } from "@/lib/getUserFromRequest";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
   await dbConnect();

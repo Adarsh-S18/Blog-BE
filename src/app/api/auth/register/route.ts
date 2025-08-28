@@ -3,6 +3,8 @@ import { dbConnect } from "@/lib/db";
 import { User } from "@/models/User";
 import { hashPassword } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -28,6 +30,7 @@ export async function POST(req: Request) {
       name: user.name,
     });
   } catch (e: any) {
+    console.log(e)
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

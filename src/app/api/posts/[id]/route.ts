@@ -4,6 +4,8 @@ import { Post } from "@/models/Post";
 import { getUserFromRequest } from "@/lib/getUserFromRequest";
 import mongoose from "mongoose";
 
+export const dynamic = "force-dynamic";
+
 interface Params {
   params: { id: string };
 }

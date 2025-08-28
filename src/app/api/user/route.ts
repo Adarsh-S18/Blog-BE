@@ -3,6 +3,7 @@ import { dbConnect } from "@/lib/db";
 import { User } from "@/models/User";
 import { hashPassword } from "@/lib/auth";
 import { getUserFromRequest } from "@/lib/getUserFromRequest";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
   const authUser = getUserFromRequest(req);

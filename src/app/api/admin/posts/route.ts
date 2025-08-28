@@ -3,6 +3,7 @@ import { dbConnect } from "@/lib/db";
 import { Post } from "@/models/Post";
 import { getUserFromRequest } from "@/lib/getUserFromRequest";
 import mongoose from "mongoose";
+export const dynamic = "force-dynamic";
 
 function requireAdmin(req: Request) {
   const u = getUserFromRequest(req);

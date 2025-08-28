@@ -3,6 +3,8 @@ import { dbConnect } from "@/lib/db";
 import { User } from "@/models/User";
 import { comparePassword, signJwt } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
